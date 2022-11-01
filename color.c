@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 13:53:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/01 14:54:14 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/01 17:50:09 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ int	get_color(char *str)
 	int	i;
 	int	res;
 
+	if (!str)
+		return (-ERR);
+	if (color_syntax(str) == ERR)
+		return (-ERR);
 	i = 0;
-	len = ft_strlen(str);
+	len = ft_strlen_n(str);
 	res = 0;
 	while (len > 2)
 	{
@@ -40,7 +44,35 @@ int	color_3_to_1(int r, int g, int b)
 
 int	parse_color(char *str)
 {
-	char	**colors;
+	char	**clrs;
+	int		r;
+	int		g;
+	int		b;
 
-	colors = ft_split(str, ',');
+	if (!str)
+		return (-ERR);
+	clrs = ft_split(str, ',');
+	r = get_color(clrs[0]);
+	g = get_color(clrs[1]);
+	b = get_color(clrs[2]);
+	free_char_array(clrs);
+	if (r == -ERR || g == -ERR || b == -ERR)
+		return (-ERR);
+	return (color_3_to_1(r, g, b));
+}
+
+int	color_syntax(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (ERR);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]))
+			return (ERR);
+		i++;
+	}
+	return (OK);
 }

@@ -6,16 +6,20 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/01 14:20:45 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/01 19:02:26 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	map_parser
 
-LIBFT = libft.a
+LIBFT = ./libft/libft.a
+
+LIB_INC = ./libft/
 
 SRCS =	color.c\
-		main.c
+		main.c \
+		utils.c \
+		parser.c
 
 OBJ	= 	$(SRCS:.c=.o)
 
@@ -23,19 +27,19 @@ CC		=	gcc
 
 FLAGS	=	-Wall -Wextra -Werror
 
-HEADER	=	./libft.h
+HEADER	=	header.h
 
 all:		libft	$(NAME)
 
 libft:		
-			make -C libft
+			make -C libft/
 
 %.o:		%.c	$(HEADER) 
-			$(CC) $(FLAGS) -c $< -o $@
-
+			$(CC) $(FLAGS) -Imlx -c $< -o $@
+# -Imlx
 $(NAME):	$(OBJ) $(HEADER)
-			ar rc $(NAME) $(OUT)
-
+			$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I $(LIB_INC) $(LIBFT)
+# -Lmlx -lmlx -framework OpenGL -framework AppKit
 clean:
 		make -C libft/ clean
 		rm -f $(OBJ) 
@@ -46,4 +50,4 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY:	all clean fclean re 
+.PHONY:	all clean fclean re libft

@@ -2,6 +2,7 @@
 *.d
 todo.txt
 .vscode
+map_parser
 # Compiled Object files
 *.slo
 *.lo

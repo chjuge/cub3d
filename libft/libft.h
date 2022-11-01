@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 17:08:54 by sbrella           #+#    #+#             */
-/*   Updated: 2022/11/01 14:57:56 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/01 17:21:28 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,6 @@ int		find_end_of_line(char *buf);
 int		find_len_next_line(char *str);
 int		find_lines_count(char **strs);
 void	free_char_array(char **arr);
+size_t	ft_strlen_n(const char *s);
+int		ft_isnum(char c);
 #endif

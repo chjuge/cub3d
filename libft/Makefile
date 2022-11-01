@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/01 15:08:23 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/01 17:21:56 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ SRCS =	ft_atoi.c \
 		get_next_line.c \
 		get_next_line_utils.c \
 		get_next_line_utils2.c \
-		ft_free_char_array.c
+		ft_free_char_array.c \
+		ft_isnum.c
 		
 
 OBJ		= 	$(SRCS:.c=.o)
