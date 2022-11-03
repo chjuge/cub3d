@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/01 19:02:26 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/03 18:45:52 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,12 @@ LIB_INC = ./libft/
 SRCS =	color.c\
 		main.c \
 		utils.c \
-		parser.c
+		parser.c \
+		t_map.c \
+		fill_the_field.c\
+		t_field.c \
+		t_list.c
+
 
 OBJ	= 	$(SRCS:.c=.o)
 
