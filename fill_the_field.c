@@ -6,13 +6,13 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/03 19:28:51 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:02:01 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_field	*fill_list(char *str)
+t_field	*fill_list(char *str, t_map *map)
 {
 	int	len;
 	int	i;
@@ -24,23 +24,49 @@ t_field	*fill_list(char *str)
 	field = NULL;
 	while (i < len)
 	{
-		tmp = init_field(str[i]);
+		tmp = init_field(str[i], map);
 		add_back_field(&field, tmp);
 		i++;
 	}
 	return (field);
 }
 
+void	fill_start_xy(t_map *map)
+{
+	int 	i;
+	int		j;
+	t_list	*tmpl;
+	t_field	*tmpf;
+
+	i = 1;
+	j = 1;
+	tmpl = map->lst;
+	while (tmpl->next)
+	{
+		i++;
+		tmpl = tmpl->next;
+	}
+	tmpf = tmpl->val;
+	while (tmpf->next)
+	{
+		j++;
+		tmpf = tmpf->next;
+	}
+	map->start_x = j;
+	map->start_y = i;
+}
+
 int	fill_the_field(t_map *map, char *str, int fd)
 {
 	t_list	*tmp;
 
-	map->lst = NULL;
 	while (check_for_field(str) == OK)
 	{
 		tmp = init_list();
-		tmp->val = fill_list(str);
+		tmp->val = fill_list(str, map);
 		add_back_list(&(map->lst), tmp);
+		if (map->start_x != -1 || map->start_dir != -1)
+			fill_start_xy(map);
 		free(str);
 		str = get_next_line(fd);
 	}

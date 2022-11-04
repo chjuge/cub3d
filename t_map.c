@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:50:13 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/03 19:27:36 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:09:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_map	*init_map()
 	map->start_x = -1;
 	map->start_y = -1;
 	map->start_dir = -1;
+	map->lst = NULL;
 
 	return (map);
 }

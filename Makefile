@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/03 18:45:52 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/04 17:13:49 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRCS =	color.c\
 		t_map.c \
 		fill_the_field.c\
 		t_field.c \
-		t_list.c
+		t_list.c \
+		check_for_full_map.c\
+		fields_to_array.c
 
 
 OBJ	= 	$(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/03 19:26:33 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:10:33 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,43 +123,47 @@ int	parse_map(char *param, t_map *map)
 		if (ft_strncmp("\n", str, 2) == 0)
 		{
 			free(str);
-			continue;
+			continue ;
 		}
 		flag = check_for_color(str);
 		if (flag != ERR)
+		{
 			add_color_to_map(map, flag, str);
+			free(str);
+			continue ;
+		}
 		flag = check_for_texture(str);
 		if (flag != ERR)
+		{
 			add_texture_to_map(map, flag, str);
+			free(str);
+			continue;
+		}
 		flag = check_for_field(str);
 		if (flag != ERR)
+		{
 			if 	(fill_the_field(map, str, fd) == ERR)
 			{
 				printf("map error\n");
 				free_map(map);
+				close(fd);
 				return (ERR);
 			}
-			else
+			else if (fields_to_array(map) == ERR)
 			{
-				if (fields_to_array(map) == ERR)
-				{
 					printf("map error\n");
 					free_map(map);
+					close(fd);
 					return (ERR);					
-				}
 			}
-		else
-		{
-			printf("map error\n");
-			free_map(map);
-			return (ERR);
-		}
-		if (str)
-		{
-			free(str);
-			str = NULL;
 		}
 	}
 	close(fd);
+	if (check_for_full_map(map) == ERR)
+	{
+		printf("map error\n");
+		free_map(map);
+		return (ERR);
+	}
 	return (OK);
 }

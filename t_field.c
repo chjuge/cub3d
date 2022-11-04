@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_list.c                                           :+:      :+:    :+:   */
+/*   t_field.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:32:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/03 18:42:44 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:28:02 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_field	*init_field(char ch)
+t_field	*init_field(char ch, t_map *map)
 {
 	t_field	*res;
 
@@ -21,7 +21,17 @@ t_field	*init_field(char ch)
 	if (ch == ' ' || ch == '1')
 		res->val = 1;
 	else
+	{
 		res->val = 0;
+		if (ch == 'N')
+			map->start_dir = NO;
+		else if (ch == 'S')
+			map->start_dir = SO;
+		else if (ch == 'W')
+			map->start_dir = WE;
+		else
+			map->start_dir = EA;
+	}
 	return (res);
 }
 
