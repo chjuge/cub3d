@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 18:51:37 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 20:16:51 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,16 @@ int main(int argc, char **argv)
 	map = init_map();
 	if (parse_map(argv[1], map) != ERR)
 	{
+		// if (check_for_full_map(map) == ERR)
+		// {
+		// 	printf("map is not full\n");
+		// 	printf("map error\n");
+		// 	free_map(map);
+		// 	return (ERR);
+		// }
 		read_t_map(map);
 		free_map(map);
+		printf("%d\n", 0xdc6400); // 220,100,0
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 18:34:56 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:25:37 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,5 @@ int	check_for_full_map(t_map *map);
 void	read_int_map(int	**map);
 void	read_t_map(t_map *map);
 
+void	read_lines(t_list	*lst);
 #endif

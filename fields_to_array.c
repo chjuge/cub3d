@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:12:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 19:07:11 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:59:35 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,11 @@ void	adjust_length(t_map *map, int *x, int *y)
 
 int	**convert_lst_to_array(t_list *lst, int x, int y) ///!!!!!!!
 {
-	printf("sho suka za huinya\n");
-
 	int	**arr;
 	int	i;
 	int	j;
 	t_field	*tmp;
 
-	printf("x	%d		y	%d", x, y);
 	arr = malloc(sizeof(int *) * (y + 1));
 	i = 0;
 	while (i < y)
@@ -136,6 +133,7 @@ int	**convert_lst_to_array(t_list *lst, int x, int y) ///!!!!!!!
 		}
 		arr[i][j] = -1;
 		lst = lst->next;
+		i++;
 	}
 	arr[i] = NULL;
 	return (arr);
@@ -146,10 +144,12 @@ void fields_to_array(t_map *map)
 	int	max_x;
 	int	max_y;
 
-	
+	// read_lines(map->lst);
 	adjust_front_back(map);
 	adjust_length(map, &max_x, &max_y);
-	printf("try to convert\nx	%d\ny	%d\n", max_x, max_y);
-	printf("map	%p\nmap.lst	%p\nmap.map	%p\n", map, map->lst, map->map);
+	// read_lines(map->lst);
+
+	// printf("map	%p\nmap.lst	%p\nmap.map	%p\n", map, map->lst, map->map);
 	map->map = convert_lst_to_array(map->lst, max_x, max_y);
+	// read_int_map(map->map);
 }

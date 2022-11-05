@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:50:13 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/04 17:09:06 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 20:00:44 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	free_int_arr(int **arr)
 
 void	free_map(t_map *map)
 {
+	if (!map)
+		return ;
 	if (map->texture_no)
 		free(map->texture_no);
 	if (map->texture_so)
@@ -58,6 +60,12 @@ void	free_map(t_map *map)
 	if (map->map)
 		free_int_arr(map->map);
 	if (map->lst)
-		free_lists_all(map->lst);
+	{
+		// printf("map	%p\n", map);
+		// printf("lst	%p\n", map->lst);
+		// printf("val	%p\n\n\n", map->lst->val);
+		// read_lines(map->lst);
+		free_lists_all(map->lst); //1
+	}
 	free(map);
 }

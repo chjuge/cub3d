@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 18:57:04 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:31:54 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	fill_the_field(t_map *map, char *str, int fd)
 	if (str)
 	{
 		free(str);
+		// str = NULL;
 		return (ERR);
 	}
 	return (OK);
