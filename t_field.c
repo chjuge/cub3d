@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:32:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/04 17:28:02 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:34:11 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ t_field	*init_field(char ch, t_map *map)
 	return (res);
 }
 
+t_field *init_field_2(int n)
+{
+	t_field	*res;
+
+	res = malloc(sizeof(t_field));
+	res->next = NULL;
+	res->val = n;
+	return (res);
+}
+
 t_field	*field_last(t_field *lst)
 {
 	if (!lst)
@@ -56,7 +66,7 @@ void	add_back_field(t_field **lst, t_field *new)
 		*lst = new;
 		return ;
 	}
-	tmp = red_last(tmp);
+	tmp = field_last(tmp);
 	tmp->next = new;
 }
 

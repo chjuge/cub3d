@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/04 19:50:50 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:34:16 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ t_field	*fill_list(char *str, t_map *map);
 int		fill_the_field(t_map *map, char *str, int fd);
 
 t_field	*init_field(char ch, t_map *map);
+t_field *init_field_2(int n);
 t_field	*field_last(t_field *lst);
 void	add_back_field(t_field **lst, t_field *new);
 void	free_fields_all(t_field *t);
@@ -92,7 +93,11 @@ t_list	*list_last(t_list *lst);
 void	add_back_list(t_list **lst, t_list *new);
 void	free_lists_all(t_list *t);
 
+int	parse_map(char *param, t_map *map);
+
 
 int	fields_to_array(t_map *map); // to do!!!
 
+
+int	check_for_full_map(t_map *map);
 #endif

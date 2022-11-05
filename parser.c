@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/04 17:10:33 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:20:54 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,14 @@ int	parse_map(char *param, t_map *map)
 					close(fd);
 					return (ERR);					
 			}
+		}
+		else
+		{
+			printf("map error\n");
+			free_map(map);
+			close(fd);
+			free(str);
+			return (ERR);
 		}
 	}
 	close(fd);
