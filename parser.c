@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 17:20:54 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:55:11 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_for_color(char *str)
 
 	if (!str || ft_strlen_n(str) < 8)
 		return (ERR);
-	if (str[0] != 'F' || str[0] != 'C')
+	if (str[0] != 'F' && str[0] != 'C')
 		return (ERR);
 	if (str[1] != ' ')
 		return (ERR);
@@ -27,7 +27,7 @@ int	check_for_color(char *str)
 	i = 3;
 	while (str[i] && str[i] != '\n')
 	{
-		if (!ft_isnum(str[i]) || str[i] != ',')
+		if (!ft_isnum(str[i]) && str[i] != ',')
 			return (ERR);
 		i++;
 	}
@@ -99,8 +99,10 @@ int check_for_field(char *str)
 		return (ERR);
 	while (str[i] && str[i] != '\n')
 	{
-		if (cmp_with_admissible(str[i] == ERR))
+		if (cmp_with_admissible(str[i]) == ERR)
+		{
 			return (ERR);
+		}
 		i++;
 	}
 	return (OK);
@@ -123,11 +125,13 @@ int	parse_map(char *param, t_map *map)
 		if (ft_strncmp("\n", str, 2) == 0)
 		{
 			free(str);
+			printf("\\n\n");
 			continue ;
 		}
 		flag = check_for_color(str);
 		if (flag != ERR)
 		{
+			printf("got color\n");
 			add_color_to_map(map, flag, str);
 			free(str);
 			continue ;
@@ -135,6 +139,7 @@ int	parse_map(char *param, t_map *map)
 		flag = check_for_texture(str);
 		if (flag != ERR)
 		{
+			printf("got texture\n");
 			add_texture_to_map(map, flag, str);
 			free(str);
 			continue;
@@ -142,6 +147,7 @@ int	parse_map(char *param, t_map *map)
 		flag = check_for_field(str);
 		if (flag != ERR)
 		{
+			printf ("got field\n");
 			if 	(fill_the_field(map, str, fd) == ERR)
 			{
 				printf("map error\n");
@@ -149,19 +155,15 @@ int	parse_map(char *param, t_map *map)
 				close(fd);
 				return (ERR);
 			}
-			else if (fields_to_array(map) == ERR)
-			{
-					printf("map error\n");
-					free_map(map);
-					close(fd);
-					return (ERR);					
-			}
+			else 
+				fields_to_array(map);
 		}
 		else
 		{
+			printf("got bad line:\n%s\n", str);
 			printf("map error\n");
-			free_map(map);
 			close(fd);
+			free_map(map);
 			free(str);
 			return (ERR);
 		}
@@ -169,6 +171,7 @@ int	parse_map(char *param, t_map *map)
 	close(fd);
 	if (check_for_full_map(map) == ERR)
 	{
+		printf("map is not full\n");
 		printf("map error\n");
 		free_map(map);
 		return (ERR);

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 17:34:16 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:34:56 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,12 @@ void	free_lists_all(t_list *t);
 int	parse_map(char *param, t_map *map);
 
 
-int	fields_to_array(t_map *map); // to do!!!
+void	fields_to_array(t_map *map); // to do!!!
 
 
 int	check_for_full_map(t_map *map);
+
+void	read_int_map(int	**map);
+void	read_t_map(t_map *map);
+
 #endif

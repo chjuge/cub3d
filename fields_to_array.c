@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:12:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 17:38:24 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/05 19:07:11 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,26 +92,64 @@ void	line_to_length(t_list *lst, int i)
 	}
 }
 
-void	adjust_length(t_map *map)
+void	adjust_length(t_map *map, int *x, int *y)
 {
 	int		i;
+	int		j;
 	t_list	*tmp;
 
 	i = find_max_len_line(map->lst);
+	j = 0;
 	tmp = map->lst;
 	while (tmp)
 	{
 		line_to_length(tmp, i);
 		tmp = tmp->next;
+		j++;
 	}
+	*x = i;
+	*y = j;
 }
 
-int	fields_to_array(t_map *map)
+int	**convert_lst_to_array(t_list *lst, int x, int y) ///!!!!!!!
 {
-	// int	max_x;
-	// int	max_y;
+	printf("sho suka za huinya\n");
 
+	int	**arr;
+	int	i;
+	int	j;
+	t_field	*tmp;
+
+	printf("x	%d		y	%d", x, y);
+	arr = malloc(sizeof(int *) * (y + 1));
+	i = 0;
+	while (i < y)
+	{
+		arr[i] = malloc(sizeof(int) * (x + 1));
+		j = 0;
+		tmp = lst->val;
+		while (j < x)
+		{
+			arr[i][j] = tmp->val;
+			j++;
+			tmp = tmp->next; 
+		}
+		arr[i][j] = -1;
+		lst = lst->next;
+	}
+	arr[i] = NULL;
+	return (arr);
+}
+
+void fields_to_array(t_map *map)
+{
+	int	max_x;
+	int	max_y;
+
+	
 	adjust_front_back(map);
-	adjust_length(map);
-	return (OK);
+	adjust_length(map, &max_x, &max_y);
+	printf("try to convert\nx	%d\ny	%d\n", max_x, max_y);
+	printf("map	%p\nmap.lst	%p\nmap.map	%p\n", map, map->lst, map->map);
+	map->map = convert_lst_to_array(map->lst, max_x, max_y);
 }
