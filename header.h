@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 19:25:37 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 12:09:03 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <math.h>
 # include <string.h>
 # include <stdlib.h>
-// # include <mlx.h>
+# include <mlx.h>
 # define ERR 1
 # define OK 0
 # define FLOOR 5
@@ -48,10 +48,14 @@ typedef struct	s_list
 
 typedef struct s_map
 {
-	char	*texture_no;
-	char	*texture_so;
-	char	*texture_we;
-	char	*texture_ea;
+	char	*path_to_txt_no;
+	char	*path_to_txt_so;
+	char	*path_to_txt_we;
+	char	*path_to_txt_ea;
+	void	*texture_no;
+	void	*texture_so;
+	void	*texture_we;
+	void	*texture_ea;
 	int		color_c;
 	int		color_f;
 	int		**map;
@@ -96,7 +100,7 @@ void	free_lists_all(t_list *t);
 int	parse_map(char *param, t_map *map);
 
 
-void	fields_to_array(t_map *map); // to do!!!
+void	fields_to_array(t_map *map);
 
 
 int	check_for_full_map(t_map *map);
@@ -105,4 +109,7 @@ void	read_int_map(int	**map);
 void	read_t_map(t_map *map);
 
 void	read_lines(t_list	*lst);
+
+void	*parse_textures(t_map *map);
+
 #endif

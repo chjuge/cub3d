@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 10:58:45 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 11:36:01 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	check_for_texture(char	*str)
 void	add_texture_to_map(t_map *map, int flag, char *str)
 {
 	if (flag == NO)
-		map->texture_no = ft_strdup_n(str + 3);
+		map->path_to_txt_no = ft_strdup_n(str + 3);
 	else if (flag == SO)
-		map->texture_so = ft_strdup_n(str + 3);
+		map->path_to_txt_so = ft_strdup_n(str + 3);
 	else if (flag == WE)
-		map->texture_we = ft_strdup_n(str + 3);
+		map->path_to_txt_we = ft_strdup_n(str + 3);
 	else if (flag == EA)
-		map->texture_ea = ft_strdup_n(str + 3);
+		map->path_to_txt_ea = ft_strdup_n(str + 3);
 }
 
 void	add_color_to_map(t_map *map, int flag, char *str)
@@ -95,7 +95,8 @@ int check_for_field(char *str)
 	int	i;
 
 	i = 0;
-	if (!str)
+	// printf("str[0] == %c\n", str[0]);
+	if (!str || str[0] == '\n')
 		return (ERR);
 	while (str[i] && str[i] != '\n')
 	{
@@ -116,7 +117,11 @@ int	parse_map(char *param, t_map *map)
 
 	fd = open(param, O_RDONLY);
 	if (fd < 0)
+	{
+		printf("cannot open:	%s\n", param);
+		close(fd);
 		return (ERR);
+	}
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -125,7 +130,6 @@ int	parse_map(char *param, t_map *map)
 		if (ft_strncmp("\n", str, 2) == 0)
 		{
 			free(str);
-			// str = NULL;
 			printf("\\n\n");
 			continue ;
 		}
@@ -135,7 +139,6 @@ int	parse_map(char *param, t_map *map)
 			printf("got color\n");
 			add_color_to_map(map, flag, str);
 			free(str);
-			// str = NULL;
 			continue ;
 		}
 		flag = check_for_texture(str);
@@ -144,7 +147,6 @@ int	parse_map(char *param, t_map *map)
 			printf("got texture\n");
 			add_texture_to_map(map, flag, str);
 			free(str);
-			// str = NULL;
 			continue;
 		}
 		flag = check_for_field(str);
@@ -154,7 +156,6 @@ int	parse_map(char *param, t_map *map)
 			if 	(fill_the_field(map, str, fd) == ERR)
 			{
 				printf("map error\n");
-				free_map(map);
 				close(fd);
 				return (ERR);
 			}
@@ -170,7 +171,6 @@ int	parse_map(char *param, t_map *map)
 			printf("got bad line:\n%s\n", str);
 			printf("map error\n");
 			close(fd);
-			free_map(map);
 			free(str);
 			return (ERR);
 		}

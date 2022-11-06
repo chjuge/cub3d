@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:30:01 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 11:09:48 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 11:36:01 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	read_t_map(t_map *map)
 	read_int_map(map->map);
 	printf("\ncolor	floor	%d\n", map->color_f);
 	printf("color	ceil	%d\n", map->color_c);
-	printf("\ntexture no	%s\n", map->texture_no);
-	printf("texture so	%s\n", map->texture_so);
-	printf("texture ea	%s\n", map->texture_ea);
-	printf("texture we	%s\n", map->texture_we);
+	printf("\ntexture no	%s\n", map->path_to_txt_no);
+	printf("texture so	%s\n", map->path_to_txt_so);
+	printf("texture ea	%s\n", map->path_to_txt_ea);
+	printf("texture we	%s\n", map->path_to_txt_we);
 }
 
 void	read_int_map(int	**map)

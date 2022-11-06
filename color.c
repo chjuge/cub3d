@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 13:53:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 11:08:37 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 11:34:13 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	color_syntax(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 	{
-		if (!ft_isalnum(str[i]) && str[i] != ',')
+		if (!ft_isalnum(str[i]))
 			return (ERR);
 		i++;
 	}

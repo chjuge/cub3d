@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 11:10:29 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 11:45:44 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,14 @@ int main(int argc, char **argv)
 			return (ERR);
 		}
 		read_t_map(map);
-		free_map(map);
-		printf("%d\n", 0xdc6400); // 220,100,0
+		if (parse_textures(map) == ERR)
+		{
+			printf("wrong path to textures\n");
+			// free_map(map);
+			// return (NULL);
+		}
 	}
-	return (0);
+	free_map(map); //
+	return (0);    //
+	// return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 19:31:54 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 11:30:27 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	fill_the_field(t_map *map, char *str, int fd)
 
 	while (check_for_field(str) == OK)
 	{
+		printf("str:	'%s'", str);
 		tmp = init_list();
 		tmp->val = fill_list(str, map);
 		add_back_list(&(map->lst), tmp);
@@ -72,6 +73,7 @@ int	fill_the_field(t_map *map, char *str, int fd)
 	}
 	if (str)
 	{
+		printf("find bad line!!!\n");
 		free(str);
 		// str = NULL;
 		return (ERR);
