@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 20:10:37 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 10:58:45 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	add_texture_to_map(t_map *map, int flag, char *str)
 void	add_color_to_map(t_map *map, int flag, char *str)
 {
 	if (flag == CEIL)
-		map->color_c = get_color(str + 2);
+		map->color_c = parse_color(str + 2);
 	else if (flag == FLOOR)
-		map->color_f = get_color(str + 2);
+		map->color_f = parse_color(str + 2);
 }
 
 int cmp_with_admissible(char c)
