@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:50:13 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 12:21:33 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:54:16 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ t_map	*init_map()
 	map->start_y = -1;
 	map->start_dir = -1;
 	map->lst = NULL;
-	map->texture_ea = NULL;
-	map->texture_no = NULL;
-	map->texture_so = NULL;
-	map->texture_we = NULL;
-	map->mlx = NULL;
+	map->max_x = 0;
+	map->max_y = 0;
 	return (map);
 }
 
@@ -54,24 +51,31 @@ void	free_map(t_map *map)
 	if (!map)
 		return ;
 	if (map->path_to_txt_no)
-		free(map->path_to_txt_no);
+		free(map->path_to_txt_no);// удалять
 	if (map->path_to_txt_so)
-		free(map->path_to_txt_so);
+		free(map->path_to_txt_so);// удалять
 	if (map->path_to_txt_we)
-		free(map->path_to_txt_we);
+		free(map->path_to_txt_we);// удалять
 	if (map->path_to_txt_ea)
-		free(map->path_to_txt_ea);
+		free(map->path_to_txt_ea); // удалять
+	if (map->lst)
+		free_lists_all(map->lst); // удалять
+	free(map);
+}
+
+void	free_final_map(t_fin_map *map)
+{
+	if (map->texture_ea.txtr)
+		mlx_destroy_image(map->mlx, map->texture_ea.txtr);
+	if (map->texture_no.txtr)
+		mlx_destroy_image(map->mlx, map->texture_no.txtr);
+	if (map->texture_so.txtr)
+		mlx_destroy_image(map->mlx, map->texture_so.txtr);
+	if (map->texture_we.txtr)
+		mlx_destroy_image(map->mlx, map->texture_we.txtr);
 	if (map->map)
 		free_int_arr(map->map);
-	if (map->lst)
-		free_lists_all(map->lst);
-	// if (map->texture_ea)
-	// 	free(map->texture_ea);
-	// if (map->texture_no)
-	// 	free(map->texture_no);
-	// if (map->texture_so)
-	// 	free(map->texture_so);
-	// if (map->texture_we)
-	// 	free(map->texture_we); как их нужно убивать?
+	// if (map->mlx)
+		// free(map->mlx);
 	free(map);
 }

@@ -1,6 +1,7 @@
 
-NO       ./textures/colorstone.png
+NO ./textures/colorstone.xpm
 SO ./textures/mossy.xpm
+WE ./textures/redbrick.xpm
 WE ./textures/redbrick.xpm
 EA ./textures/wood.xpm
 
@@ -19,4 +20,4 @@ C 200,30,0
 10000000000000001100000010001
 100000000000S00001101010010001
 11000001110101011111011110N0111
-11111111111111  11111111111111111
+11111111111111  111111111111111111

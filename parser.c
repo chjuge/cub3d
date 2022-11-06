@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 16:32:17 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:18:19 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,21 @@ void	add_texture_to_map(t_map *map, int flag, char *str_r)
 
 	while (*str == ' ')
 		str++;
-	if (flag == NO)
+	if (flag == NO && !(map->path_to_txt_no))
 		map->path_to_txt_no = ft_strdup_n(str);
-	else if (flag == SO)
+	else if (flag == SO && !(map->path_to_txt_so))
 		map->path_to_txt_so = ft_strdup_n(str);
-	else if (flag == WE)
+	else if (flag == WE && !(map->path_to_txt_we))
 		map->path_to_txt_we = ft_strdup_n(str);
-	else if (flag == EA)
+	else if (flag == EA && !(map->path_to_txt_ea))
 		map->path_to_txt_ea = ft_strdup_n(str);
 }
 
 void	add_color_to_map(t_map *map, int flag, char *str)
 {
-	if (flag == CEIL)
+	if (flag == CEIL && map->color_c == -1)
 		map->color_c = parse_color(str + 2);
-	else if (flag == FLOOR)
+	else if (flag == FLOOR && map->color_f == -1)
 		map->color_f = parse_color(str + 2);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 12:46:22 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:55:36 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,27 @@ int	check_argc(int argc)
 	return (OK);
 }
 
+t_fin_map	*copy_to_final(t_map *map)
+{
+	t_fin_map	*res;
+
+	res = malloc(sizeof(t_fin_map));
+	res->color_c = map->color_c;
+	res->color_f = map->color_f;
+	res->map = map->map;
+	res->start_x = map->start_x;
+	res->start_y = map->start_y;
+	res->start_dir = map->start_dir;
+	res->max_x = map->max_x;
+	res->max_y = map->max_y;
+
+	return(res);
+}
+
 int main(int argc, char **argv)
 {
-	t_map	*map;
+	t_map		*map;
+	t_fin_map	*res;
 
 	if (check_argc(argc) || check_cub_container(argv[1]))
 		return (1);
@@ -68,17 +86,24 @@ int main(int argc, char **argv)
 			free_map(map);
 			return (ERR);
 		}
-		read_t_map(map);
-		if (parse_textures(map) == ERR)
-		{
-			printf("wrong path to textures\n");
-			// free_map(map);
-			// return (NULL);
-		}
-		else
-			printf("got textures!\n");
+	}
+	read_t_map(map);
+	res = copy_to_final(map);
+	if (parse_textures(res, map) == ERR)
+	{
+		printf("wrong path to textures\n");
+		// free_map(map);
+		// return (NULL);
+	}
+	else
+	{
+		printf("got textures!\n");
+		res = copy_to_final(map);
 	}
 	free_map(map); //
+	free_final_map(res);	   //
+	printf("otdaem resultat\n");
+
 	return (0);    //
-	// return (map);
+	// return (res);
 }

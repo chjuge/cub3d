@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 12:23:09 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:53:10 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,44 @@ typedef struct	s_list
 
 typedef struct s_map
 {
+	t_list	*lst;
 	char	*path_to_txt_no;
 	char	*path_to_txt_so;
 	char	*path_to_txt_we;
 	char	*path_to_txt_ea;
-	void	*texture_no;
-	void	*texture_so;
-	void	*texture_we;
-	void	*texture_ea;
 	int		color_c;
 	int		color_f;
 	int		**map;
 	int		start_x;
 	int		start_y;
 	int		start_dir;
-	t_list	*lst;
-	void	*mlx;
+	int		max_x;
+	int		max_y;
 } 		t_map;
+
+typedef struct s_texture
+{
+	void	*txtr;
+	int		t_w;
+	int		t_h;
+}		t_texture;
+
+typedef struct s_fin_map
+{
+	t_texture	texture_no;
+	t_texture	texture_so;
+	t_texture	texture_we;
+	t_texture	texture_ea;
+	int		color_c;
+	int		color_f;
+	int		**map;
+	int		start_x;
+	int		start_y;
+	int		start_dir;
+	void	*mlx;
+	int		max_x;
+	int		max_y;
+}	t_fin_map;
 
 
 /*		color.c		*/
@@ -106,11 +127,12 @@ void	fields_to_array(t_map *map);
 
 int	check_for_full_map(t_map *map);
 
-void	read_int_map(int	**map);
+void	read_int_map(int **map, int max_x, int max_y);
 void	read_t_map(t_map *map);
 
 void	read_lines(t_list	*lst);
 
-int	parse_textures(t_map *map);
+int	parse_textures(t_fin_map *fin, t_map *map);
 
+void	free_final_map(t_fin_map *map);
 #endif
