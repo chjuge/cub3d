@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:12:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 19:59:35 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 16:34:05 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void fields_to_array(t_map *map)
 	int	max_y;
 
 	// read_lines(map->lst);
-	adjust_front_back(map);
+	// adjust_front_back(map);
 	adjust_length(map, &max_x, &max_y);
 	// read_lines(map->lst);
 

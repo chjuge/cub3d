@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 11:36:01 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 16:32:17 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,22 @@ int	check_for_texture(char	*str)
 	return (ERR);
 }
 
-void	add_texture_to_map(t_map *map, int flag, char *str)
+void	add_texture_to_map(t_map *map, int flag, char *str_r)
 {
+	char	*str;
+
+	str = str_r + 3;
+
+	while (*str == ' ')
+		str++;
 	if (flag == NO)
-		map->path_to_txt_no = ft_strdup_n(str + 3);
+		map->path_to_txt_no = ft_strdup_n(str);
 	else if (flag == SO)
-		map->path_to_txt_so = ft_strdup_n(str + 3);
+		map->path_to_txt_so = ft_strdup_n(str);
 	else if (flag == WE)
-		map->path_to_txt_we = ft_strdup_n(str + 3);
+		map->path_to_txt_we = ft_strdup_n(str);
 	else if (flag == EA)
-		map->path_to_txt_ea = ft_strdup_n(str + 3);
+		map->path_to_txt_ea = ft_strdup_n(str);
 }
 
 void	add_color_to_map(t_map *map, int flag, char *str)
