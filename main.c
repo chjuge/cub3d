@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 18:55:36 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:22:01 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ t_fin_map	*copy_to_final(t_map *map)
 	t_fin_map	*res;
 
 	res = malloc(sizeof(t_fin_map));
+	res->texture_ea = malloc(sizeof(t_texture));
+	res->texture_no = malloc(sizeof(t_texture));
+	res->texture_so = malloc(sizeof(t_texture));
+	res->texture_we = malloc(sizeof(t_texture));
 	res->color_c = map->color_c;
 	res->color_f = map->color_f;
 	res->map = map->map;
@@ -98,7 +102,6 @@ int main(int argc, char **argv)
 	else
 	{
 		printf("got textures!\n");
-		res = copy_to_final(map);
 	}
 	free_map(map); //
 	free_final_map(res);	   //

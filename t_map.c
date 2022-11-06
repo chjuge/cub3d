@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:50:13 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 18:54:16 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:51:11 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,44 @@ void	free_map(t_map *map)
 	free(map);
 }
 
+
+void	free_img(void *mlx, void *img)
+{
+	if (img)
+		mlx_destroy_image(mlx, img);
+}
+
+void	free_text_imgs(t_fin_map *map)
+{
+	if (map->texture_ea)
+	{
+		if ((map->texture_ea)->txtr)
+			mlx_destroy_image(map->mlx, (map->texture_ea)->txtr);
+		free(map->texture_ea);
+	}
+	if (map->texture_no)
+	{
+		if ((map->texture_no)->txtr)
+			mlx_destroy_image(map->mlx, (map->texture_no)->txtr);
+		free(map->texture_no);
+	}
+	if (map->texture_so)
+	{
+		if ((map->texture_so)->txtr)
+			mlx_destroy_image(map->mlx, (map->texture_so)->txtr);
+		free(map->texture_so);
+	}
+	if (map->texture_we)
+	{
+		if ((map->texture_we)->txtr)
+			mlx_destroy_image(map->mlx, (map->texture_we)->txtr);
+		free(map->texture_we);
+	}
+}
+
 void	free_final_map(t_fin_map *map)
 {
-	if (map->texture_ea.txtr)
-		mlx_destroy_image(map->mlx, map->texture_ea.txtr);
-	if (map->texture_no.txtr)
-		mlx_destroy_image(map->mlx, map->texture_no.txtr);
-	if (map->texture_so.txtr)
-		mlx_destroy_image(map->mlx, map->texture_so.txtr);
-	if (map->texture_we.txtr)
-		mlx_destroy_image(map->mlx, map->texture_we.txtr);
+	free_text_imgs(map);
 	if (map->map)
 		free_int_arr(map->map);
 	// if (map->mlx)

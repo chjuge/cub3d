@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 18:53:10 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 19:25:38 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ typedef struct s_map
 	char	*path_to_txt_so;
 	char	*path_to_txt_we;
 	char	*path_to_txt_ea;
+	int		**map;
 	int		color_c;
 	int		color_f;
-	int		**map;
 	int		start_x;
 	int		start_y;
 	int		start_dir;
@@ -72,10 +72,10 @@ typedef struct s_texture
 
 typedef struct s_fin_map
 {
-	t_texture	texture_no;
-	t_texture	texture_so;
-	t_texture	texture_we;
-	t_texture	texture_ea;
+	t_texture	*texture_no;
+	t_texture	*texture_so;
+	t_texture	*texture_we;
+	t_texture	*texture_ea;
 	int		color_c;
 	int		color_f;
 	int		**map;
