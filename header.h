@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 12:09:03 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/06 12:23:09 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_map
 	int		start_y;
 	int		start_dir;
 	t_list	*lst;
+	void	*mlx;
 } 		t_map;
 
 
@@ -110,6 +111,6 @@ void	read_t_map(t_map *map);
 
 void	read_lines(t_list	*lst);
 
-void	*parse_textures(t_map *map);
+int	parse_textures(t_map *map);
 
 #endif
