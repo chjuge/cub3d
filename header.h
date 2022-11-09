@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 19:25:38 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 00:24:46 by ilya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,40 @@
 # define SO 6
 # define WE 7
 # define EA 8
+# define WIN_X 1024
+# define WIN_Y 720
+# ifdef __linux__
+#  define ESC 65307
+#  define LEFT 65361
+#  define RIGHT 65363
+#  define TOP 65362
+#  define BOTTOM 65364
+#  define Q 113
+#  define W 119
+#  define D 100
+#  define A 97
+#  define S 115
+#  define Z 122
+#  define X 120
+#  define C 99
+#  define K 107
+#  define L 108
+# else
+#  define ESC 53
+#  define LEFT 123
+#  define RIGHT 124
+#  define TOP 126
+#  define BOTTOM 125
+#  define Q 12
+#  define W 13
+#  define A 0
+#  define S 1
+#  define Z 6
+#  define X 7
+#  define C 8
+#  define K 40
+#  define L 37
+# endif
 
 typedef struct s_field
 {
@@ -63,11 +97,21 @@ typedef struct s_map
 	int		max_y;
 } 		t_map;
 
+typedef struct	s_image
+{
+	void	*image;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_image;
+
 typedef struct s_texture
 {
 	void	*txtr;
 	int		t_w;
 	int		t_h;
+	t_image	image;
 }		t_texture;
 
 typedef struct s_fin_map
@@ -81,12 +125,19 @@ typedef struct s_fin_map
 	int		**map;
 	int		start_x;
 	int		start_y;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
 	int		start_dir;
 	void	*mlx;
+	void	*window;
+	t_image	image;
 	int		max_x;
 	int		max_y;
 }	t_fin_map;
-
 
 /*		color.c		*/
 int	get_color(char *str);
@@ -135,4 +186,11 @@ void	read_lines(t_list	*lst);
 int	parse_textures(t_fin_map *fin, t_map *map);
 
 void	free_final_map(t_fin_map *map);
+
+int		manage_move(int x, int y, void *param);
+int		manage_key(int keycode, void *param);
+int		manage_mouse(int button, int x, int y, void *param);
+int		red_button(void *param);
+void	draw_frame(t_fin_map *map);
+void	rotate_vec(double *x, double *y, double angle);
 #endif

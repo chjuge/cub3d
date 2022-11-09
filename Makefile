@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
+#    By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/06 12:01:36 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/09 12:15:42 by ilya             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRCS =	color.c\
 		check_for_full_map.c\
 		fields_to_array.c \
 		f_readers.c \
-		parse_textures.c
+		parse_textures.c \
+		mlx_hookers.c \
+		draw.c
 
 
 OBJ	= 	$(SRCS:.c=.o)
@@ -44,23 +46,31 @@ HEADER	=	header.h
 
 all:		libft mlx $(NAME)
 
-libft:		
+libft:
 			make -C libft/
 
-mlx:			
-			make -C mlx/
+# mlx:
+# 			make -C mlx/
 
-%.o:		%.c	$(HEADER) 
-			$(CC) $(FLAGS) -Imlx -c $< -o $@
+mlx:
+			make -C mlx_linux/
+
+# %.o:		%.c	$(HEADER)
+# 			$(CC) $(FLAGS) -Imlx -c $< -o $@
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx -c $< -o $@
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -I $(LIB_INC) $(LIBFT)
 # -Imlx
-$(NAME):	$(OBJ) $(HEADER)
-			$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I $(LIB_INC) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit
+# $(NAME):	$(OBJ) $(HEADER)
+# 			$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I $(LIB_INC) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit
 # -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 clean:
 		make -C libft/ clean
 		make -C mlx/ clean
-		rm -f $(OBJ) 
+		rm -f $(OBJ)
 
 fclean:	clean
 		make -C libft/ fclean
