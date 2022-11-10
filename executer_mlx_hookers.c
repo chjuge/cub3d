@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 04:11:34 by ilya              #+#    #+#             */
-/*   Updated: 2022/11/10 16:36:36 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:01:45 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	validate(t_fin_map *map, double new_pos_x, double new_pos_y)
 		|| new_pos_y >= (double)map->max_x
 		|| map->map[(int)new_pos_x][(int)new_pos_y])
 		return ;
-	map->posX = new_pos_x;
-	map->posY = new_pos_y;
+	map->pos_x = new_pos_x;
+	map->pos_y = new_pos_y;
 }
 
 void	rotate_plus(double angle, t_fin_map *map)
 {
-	rotate_vec(&map->dirX, &map->dirY, angle);
+	rotate_vec(&map->dir_x, &map->dir_y, angle);
 	rotate_vec(&map->planeX, &map->planeY, angle);
 }
 

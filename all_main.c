@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 15:45:06 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:01:45 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	configure_map(t_fin_map *map)
 {
 	// map->posX = (double)map->start_x + 0.5; 
 	// map->posY = (double)map->start_y + 0.5;
-	map->posX = 1.5;
-	map->posY = 2.5;
-	map->dirX = 1.0;
-	map->dirY = 0.0; //initial direction vector
+	map->pos_x = 1.5;
+	map->pos_y = 2.5;
+	map->dir_x = 1.0;
+	map->dir_y = 0.0; //initial direction vector
 	map->planeX = 0.0;
 	map->planeY = 0.66; //the 2d raycaster version of camera plane
 	map->image.image = NULL;

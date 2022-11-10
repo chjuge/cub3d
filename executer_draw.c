@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 04:41:50 by ilya              #+#    #+#             */
-/*   Updated: 2022/11/10 17:38:04 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:44:41 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ void	draw_column(t_fin_map *map, int column)
 	int			intersec;
 	t_texture	*texture;
 	double		place;
+	t_inter		inter;
 
 	intersec = trace(column, map, &texture, &place);
-	real_draw(map, intersec, column, texture, place);
+	inter.intersec = intersec;
+	inter.place = place;
+	real_draw(map, column, texture, inter);
 }
 
 void	draw_frame(t_fin_map *map)

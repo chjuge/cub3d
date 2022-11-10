@@ -6,111 +6,117 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:11:06 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 17:11:47 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:16:42 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	trace(int x, t_fin_map *map, t_texture **texture, double *place)
+void	trace_step1(t_trace *t, int x, t_fin_map *map)
 {
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	del_dist_x;
-	double	del_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit; //was there a wall hit?
-	int		side;//was a NS or a EW wall hit?
-	int		line_height;
-	double	wall_x;
-	int		tex_x;
+	t->camera_x = 2 * x / (double)WIN_X - 1;
+	t->ray_dir_x = map->dir_x + map->planeX * 0;
+	t->ray_dir_y = map->dir_y + map->planeY * t->camera_x;
+	t->map_x = (int)map->pos_x;
+	t->map_y = (int)map->pos_y;
+	t->del_dist_x = sqrt(1 + (t->ray_dir_y * t->ray_dir_y)
+			/ (t->ray_dir_x * t->ray_dir_x));
+	t->del_dist_y = sqrt(1 + (t->ray_dir_x * t->ray_dir_x)
+			/ (t->ray_dir_y * t->ray_dir_y));
+	t->hit = 0;
+}
 
-	camera_x = 2 * x / (double)WIN_X - 1;
-	ray_dir_x = map->dirX + map->planeX * 0;
-	ray_dir_y = map->dirY + map->planeY * camera_x;
-	map_x = (int)map->posX;
-	map_y = (int)map->posY;
-	del_dist_x = sqrt(1 + (ray_dir_y * ray_dir_y) / (ray_dir_x * ray_dir_x));
-	del_dist_y = sqrt(1 + (ray_dir_x * ray_dir_x) / (ray_dir_y * ray_dir_y));
-	hit = 0;
+void	trace_step2(t_trace *t, t_fin_map *map)
+{
 	//calculate step and initial sideDist
-	if (ray_dir_x < 0)
+	if (t->ray_dir_x < 0)
 	{
-		step_x = -1;
-		side_dist_x = (map->posX - map_x) * del_dist_x;
+		t->step_x = -1;
+		t->side_dist_x = (map->pos_x - t->map_x) * t->del_dist_x;
 	}
 	else
 	{
-		step_x = 1;
-		side_dist_x = (map_x + 1.0 - map->posX) * del_dist_x;
+		t->step_x = 1;
+		t->side_dist_x = (t->map_x + 1.0 - map->pos_x) * t->del_dist_x;
 	}
-	if (ray_dir_y < 0)
+	if (t->ray_dir_y < 0)
 	{
-		step_y = -1;
-		side_dist_y = (map->posY - map_y) * del_dist_y;
+		t->step_y = -1;
+		t->side_dist_y = (map->pos_y - t->map_y) * t->del_dist_y;
 	}
 	else
 	{
-		step_y = 1;
-		side_dist_y = (map_y + 1.0 - map->posY) * del_dist_y;
-	}
+		t->step_y = 1;
+		t->side_dist_y = (t->map_y + 1.0 - map->pos_y) * t->del_dist_y;
+	}	
+}
+
+void	trace_step3(t_trace *t, t_fin_map *map)
+{
 	//perform DDA
-	while (hit == 0)
+	while (t->hit == 0)
 	{
 		//jump to next map square, either in x-direction, or in y-direction
-		if (side_dist_x < side_dist_y)
+		if (t->side_dist_x < t->side_dist_y)
 		{
-			side_dist_x += del_dist_x;
-			map_x += step_x;
-			side = 0;
+			t->side_dist_x += t->del_dist_x;
+			t->map_x += t->step_x;
+			t->side = 0;
 		}
 		else
 		{
-			side_dist_y += del_dist_y;
-			map_y += step_y;
-			side = 1;
+			t->side_dist_y += t->del_dist_y;
+			t->map_y += t->step_y;
+			t->side = 1;
 		}
 		//Check if ray has hit a wall
-		if (map->map[map_x][map_y] > 0)
-			hit = 1;
+		if (map->map[t->map_x][t->map_y] > 0)
+			t->hit = 1;
 	}
-	if (side == 0)
-		perp_wall_dist = (side_dist_x - del_dist_x);
+}
+
+void	trace_step4(t_trace *t, t_fin_map *map, t_texture **texture)
+{
+	if (t->side == 0)
+		t->perp_wall_dist = (t->side_dist_x - t->del_dist_x);
 	else
-		perp_wall_dist = (side_dist_y - del_dist_y);
-	line_height = (int)(WIN_Y / perp_wall_dist);
-	if (side == 1)
+		t->perp_wall_dist = (t->side_dist_y - t->del_dist_y);
+	t->line_height = (int)(WIN_Y / t->perp_wall_dist);
+	if (t->side == 1)
 	{
-		if (ray_dir_y > 0.0)
+		if (t->ray_dir_y > 0.0)
 			*texture = map->texture_so;
 		else
 			*texture = map->texture_no;
 	}
 	else
 	{
-		if (ray_dir_x > 0.0)
+		if (t->ray_dir_x > 0.0)
 			*texture = map->texture_we;
 		else
 			*texture = map->texture_ea;
 	}
-	if (side == 0)
-		wall_x = map->posY + perp_wall_dist * ray_dir_y;
+}
+
+int	trace(int x, t_fin_map *map, t_texture **texture, double *place)
+{
+	t_trace	t;
+
+	trace_step1(&t, x, map);
+	trace_step2(&t, map);
+	trace_step3(&t, map);
+	trace_step4(&t, map, texture);
+	if (t.side == 0)
+		t.wall_x = map->pos_y + t.perp_wall_dist * t.ray_dir_y;
 	else
-		wall_x = map->posX + perp_wall_dist * ray_dir_x;
-	wall_x -= floor((wall_x));
+		t.wall_x = map->pos_x + t.perp_wall_dist * t.ray_dir_x;
+	t.wall_x -= floor((t.wall_x));
 	//x coordinate on the texture
-	tex_x = (int)(wall_x * (double)((*texture)->t_w));
-	if (side == 0 && ray_dir_x > 0)
-		tex_x = (*texture)->t_w - tex_x - 1;
-	if (side == 1 && ray_dir_y < 0)
-		tex_x = (*texture)->t_w - tex_x - 1;
-	*place = tex_x;
-	return (line_height / 2);
+	t.tex_x = (int)(t.wall_x * (double)((*texture)->t_w));
+	if (t.side == 0 && t.ray_dir_x > 0)
+		t.tex_x = (*texture)->t_w - t.tex_x - 1;
+	if (t.side == 1 && t.ray_dir_y < 0)
+		t.tex_x = (*texture)->t_w - t.tex_x - 1;
+	*place = t.tex_x;
+	return (t.line_height / 2);
 }

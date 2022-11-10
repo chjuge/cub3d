@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 17:09:10 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:01:45 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,10 @@ typedef struct s_fin_map
 	int		**map;
 	int		start_x;
 	int		start_y;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
 	double	planeX;
 	double	planeY;
 	int		start_dir;
@@ -140,6 +140,34 @@ typedef struct s_fin_map
 	int		max_x;
 	int		max_y;
 }	t_fin_map;
+
+typedef struct s_inter
+{
+	int		intersec;
+	double	place;
+}			t_inter;
+
+typedef struct s_trace
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	del_dist_x;
+	double	del_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit; //was there a wall hit?
+	int		side;//was a NS or a EW wall hit?
+	int		line_height;
+	double	wall_x;
+	int		tex_x;
+}			t_trace;
+
 
 /*		color.c		*/
 int	get_color(char *str);
@@ -196,8 +224,8 @@ int		red_button(void *param);
 
 void	draw_column(t_fin_map *map, int column);
 void	draw_frame(t_fin_map *map);
-void	real_draw(t_fin_map *map, double intersec, int column,
-		t_texture *texture, double place);
+void	real_draw(t_fin_map *map, int column,
+		t_texture *texture, t_inter i);
 void	image_pixel(t_image *image,int color, int x, int y);
 int		get_image_pixel(t_image *image, int x, int y);
 int		trace(int x, t_fin_map *map, t_texture **texture, double *place);

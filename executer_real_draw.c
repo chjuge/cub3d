@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:16:43 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 17:17:09 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:43:57 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	image_pixel(t_image *image, int color, int x, int y)
 	*(unsigned int *)dst = color;
 }
 
-void	real_draw(t_fin_map *map, double intersec, int column,
-		t_texture *texture, double place)
+void	real_draw(t_fin_map *map, int column,
+		t_texture *texture, t_inter i)
 {
 	int	upper_fr;
 	int	lower_fr;
@@ -30,8 +30,8 @@ void	real_draw(t_fin_map *map, double intersec, int column,
 	int	tex_color;
 
 	count = 0;
-	upper_fr = WIN_Y / 2 - (int)intersec;
-	lower_fr = WIN_Y / 2 + (int)intersec;
+	upper_fr = WIN_Y / 2 - (int)i.intersec;
+	lower_fr = WIN_Y / 2 + (int)i.intersec;
 	while (count < WIN_Y)
 	{
 		if (count < upper_fr)
@@ -40,8 +40,9 @@ void	real_draw(t_fin_map *map, double intersec, int column,
 			image_pixel(&map->image, map->color_f, column, count);
 		else
 		{
-			tex_color = get_image_pixel(&texture->image, (int)place,
-					((count - upper_fr) * texture->t_h) / (2 * (int)intersec));
+			tex_color = get_image_pixel(&texture->image, (int)i.place,
+					((count - upper_fr) * texture->t_h)
+					/ (2 * (int)i.intersec));
 			image_pixel(&map->image, tex_color, column, count);
 		}
 		count++;
