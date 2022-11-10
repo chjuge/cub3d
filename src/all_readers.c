@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:30:01 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:21:55 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:31:22 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	read_t_map(t_map *map)
 	printf("texture we	%s\n", map->path_to_txt_we);
 	printf("max_x	%d\n", map->max_x);
 	printf("max_y	%d\n", map->max_y);
+	printf("start dir:	%d\n", map->start_dir);
+	printf("start x:	%d\n", map->start_x);
+	printf("start y:	%d\n", map->start_y);
 }
 
 void	read_int_map(int	**map, int max_x, int max_y)

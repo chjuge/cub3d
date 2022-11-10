@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:26 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:50:36 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,21 @@ void	fill_start_xy(t_map *map)
 	map->start_y = i;
 }
 
+int	check_for_start_dir(int dir)
+{
+	static int	flag = 0;
+
+	if (flag == 0)
+	{
+		if (dir != -1)
+		{
+			flag++;
+			return (1);
+		}
+	}
+	return (0);
+}
+
 int	fill_the_field(t_map *map, char *str, int fd)
 {
 	t_list	*tmp;
@@ -66,7 +81,7 @@ int	fill_the_field(t_map *map, char *str, int fd)
 		tmp = init_list();
 		tmp->val = fill_list(str, map);
 		add_back_list(&(map->lst), tmp);
-		if (map->start_x != -1 || map->start_dir != -1)
+		if (check_for_start_dir(map->start_dir))
 			fill_start_xy(map);
 		free(str);
 		if (check_first_last_walls(tmp->val))
@@ -75,7 +90,7 @@ int	fill_the_field(t_map *map, char *str, int fd)
 	}
 	if (str)
 	{
-		printf("find bad line!!!\n");
+		printf("found bad line!!!\n");
 		free(str);
 		return (ERR);
 	}

@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/10 19:21:33 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/10 19:34:44 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS =	src/parser_color.c\
 
 
 OBJ	= 	$(SRCS:.c=.o)
+
 
 CC		=	gcc
 

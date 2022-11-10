@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:32:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:47 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:38:10 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ t_field	*init_field(char ch, t_map *map)
 	{
 		res->val = 0;
 		if (ch == 'N')
+		{
+			printf("\n\n\n\ngot N!!! \n\n\n\n");
 			map->start_dir = NO;
+		}
 		else if (ch == 'S')
 			map->start_dir = SO;
 		else if (ch == 'W')
