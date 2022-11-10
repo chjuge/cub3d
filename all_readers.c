@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_readers.c                                        :+:      :+:    :+:   */
+/*   all_readers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:30:01 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 13:19:14 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:27:12 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	read_int_map(int	**map, int max_x, int max_y)
 
 void	read_lines(t_list	*lst)
 {
-	printf("read_lines\n");
 	t_field	*tmp;
 
 	while (lst)
@@ -56,7 +55,7 @@ void	read_lines(t_list	*lst)
 		tmp = lst->val;
 		while (tmp)
 		{
-			printf("%d,",tmp->val);
+			printf("%d,", tmp->val);
 			tmp = tmp->next;
 		}
 		lst = lst->next;

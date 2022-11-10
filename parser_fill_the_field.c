@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_the_field.c                                   :+:      :+:    :+:   */
+/*   parser_fill_the_field.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 16:46:49 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:09:40 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_field	*fill_list(char *str, t_map *map)
 {
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 	t_field	*tmp;
 	t_field	*field;
 
@@ -33,7 +33,7 @@ t_field	*fill_list(char *str, t_map *map)
 
 void	fill_start_xy(t_map *map)
 {
-	int 	i;
+	int		i;
 	int		j;
 	t_list	*tmpl;
 	t_field	*tmpf;
@@ -55,40 +55,6 @@ void	fill_start_xy(t_map *map)
 	map->start_x = j;
 	map->start_y = i;
 }
-
-int	check_first_last_walls(t_field *lst)
-{
-	t_field	*last;
-
-	if (lst->val == 0)
-		return (ERR);
-	last = field_last(lst);
-	if (last->val == 0)
-		return (ERR);
-	return (OK);
-}
-
-int	check_line_for_zeros(t_field *lst)
-{
-	while (lst)
-	{
-		if (lst->val == 0)
-			return (ERR);
-		lst = lst->next;
-	}
-	return (OK);
-}
-
-int	check_first_last_lines(t_list *lst)
-{
-	if (check_line_for_zeros(lst->val))
-		return (ERR);
-	lst = list_last(lst);
-	if (check_line_for_zeros(lst->val))
-		return (ERR);
-	return (OK);
-}
-
 
 int	fill_the_field(t_map *map, char *str, int fd)
 {

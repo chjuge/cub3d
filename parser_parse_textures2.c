@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 11:45:48 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 13:41:52 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:06:09 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ void	fill_addr4(t_fin_map *fin)
 			&fin->texture_ea->image.line_length,
 			&fin->texture_ea->image.endian);
 }
-

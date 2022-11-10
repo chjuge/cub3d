@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 15:01:26 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:44:08 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,18 @@ int	container_check_for_color(t_map *map, int *flag, char *str);
 int	container_check_for_texture(t_map *map, int *flag, char *str);
 int	container_check_for_field(t_map *map, int *flag, char *str, int fd);
 int	got_bad_line(char *str, int fd);
+
+int	check_first_last_lines(t_list *lst);
+int	check_line_for_zeros(t_field *lst);
+int	check_first_last_walls(t_field *lst);
+
+t_fin_map	*copy_to_final(t_map *map);
+
+int	container_error(t_map *map);
+int	container_error2(t_map *map, t_fin_map *res);
+int	check_argc(int argc);
+int	check_cub_container(char *str);
+int	check_cub(char *str);
+
 
 #endif
