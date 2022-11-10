@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 15:44:08 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:09:10 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define EA 8
 # define WIN_X 1024
 # define WIN_Y 720
+/* # define __linux__ */
 # ifdef __linux__
 #  define ESC 65307
 #  define LEFT 65361
@@ -192,7 +193,14 @@ int		manage_move(int x, int y, void *param);
 int		manage_key(int keycode, void *param);
 int		manage_mouse(int button, int x, int y, void *param);
 int		red_button(void *param);
+
+void	draw_column(t_fin_map *map, int column);
 void	draw_frame(t_fin_map *map);
+void	real_draw(t_fin_map *map, double intersec, int column,
+		t_texture *texture, double place);
+void	image_pixel(t_image *image,int color, int x, int y);
+int		get_image_pixel(t_image *image, int x, int y);
+int		trace(int x, t_fin_map *map, t_texture **texture, double *place);
 void	rotate_vec(double *x, double *y, double angle);
 
 void	fill_addr1(t_fin_map *fin);
@@ -218,6 +226,16 @@ int	container_error2(t_map *map, t_fin_map *res);
 int	check_argc(int argc);
 int	check_cub_container(char *str);
 int	check_cub(char *str);
+
+int	container_keys_left_right(int keycode, double *angle);
+int	container_keys_w(int keycode, t_fin_map *map,
+		double *new_pos_x, double *new_pos_y);
+int	container_keys_a(int keycode, t_fin_map *map,
+		double *new_pos_x, double *new_pos_y);
+int	container_keys_s(int keycode, t_fin_map *map,
+		double *new_pos_x, double *new_pos_y);
+int	container_keys_d(int keycode, t_fin_map *map,
+		double *new_pos_x, double *new_pos_y);
 
 
 #endif

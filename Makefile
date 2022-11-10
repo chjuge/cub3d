@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/10 15:44:32 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/10 16:35:40 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,13 @@ SRCS =	parser_color.c\
 		parser_parse_textures.c \
 		parser_parse_textures2.c \
 		executer_mlx_hookers.c \
+		executer_mlx_hookers2.c \
+		executer_mlx_hookers_containers.c \
 		executer_draw.c \
 		parser_free_int_arr.c \
 		parser_parser_containers.c \
 		parser_copy_to_final.c \
-		all_main_utils.c
+		all_main_utils.c 
 
 
 OBJ	= 	$(SRCS:.c=.o)

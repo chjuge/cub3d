@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_hookers.c                                      :+:      :+:    :+:   */
+/*   executer_mlx_hookers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 04:11:34 by ilya              #+#    #+#             */
-/*   Updated: 2022/11/10 02:05:44 by ilya             ###   ########.fr       */
+/*   Updated: 2022/11/10 16:36:36 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		red_button(void *param)
+int	red_button(void *param)
 {
-	t_fin_map *map;
+	t_fin_map	*map;
 
 	map = (t_fin_map *)param;
 	mlx_destroy_window(map->mlx, map->window);
 	mlx_destroy_image(map->mlx, map->image.image);
 	exit(0);
-}
-
-int		manage_mouse(int button, int x, int y, void *param)
-{
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)param;
-	return (0);
 }
 
 void	validate(t_fin_map *map, double new_pos_x, double new_pos_y)
@@ -41,7 +32,13 @@ void	validate(t_fin_map *map, double new_pos_x, double new_pos_y)
 	map->posY = new_pos_y;
 }
 
-int		manage_key(int keycode, void *param)
+void	rotate_plus(double angle, t_fin_map *map)
+{
+	rotate_vec(&map->dirX, &map->dirY, angle);
+	rotate_vec(&map->planeX, &map->planeY, angle);
+}
+
+int	manage_key(int keycode, void *param)
 {
 	t_fin_map	*map;
 	double		angle;
@@ -49,54 +46,22 @@ int		manage_key(int keycode, void *param)
 	double		new_pos_y;
 
 	map = (t_fin_map *)param;
-	if (keycode == LEFT || keycode == RIGHT)
-	{
-		if (keycode == LEFT)
-			angle = -0.1;
-		else
-			angle = 0.1;
-		rotate_vec(&map->dirX, &map->dirY, angle);
-		rotate_vec(&map->planeX, &map->planeY, angle);
-	}
-	if (keycode == W)
-	{
-
-		new_pos_x = map->posX + map->dirX * 0.1;
-		new_pos_y = map->posY + map->dirY * 0.1;
+	if (container_keys_left_right(keycode, &angle))
+		rotate_plus(angle, map);
+	else if (container_keys_w(keycode, map, &new_pos_x, &new_pos_y))
 		validate(map, new_pos_x, new_pos_y);
-	}
-	if (keycode == S)
-	{
-		new_pos_x = map->posX - map->dirX * 0.1;
-		new_pos_y = map->posY - map->dirY * 0.1;
+	else if (container_keys_s(keycode, map, &new_pos_x, &new_pos_y))
 		validate(map, new_pos_x, new_pos_y);
-	}
-	if (keycode == A)
-	{
-		new_pos_x = map->posX + map->dirY * 0.1;
-		new_pos_y = map->posY - map->dirX * 0.1;
+	else if (container_keys_a(keycode, map, &new_pos_x, &new_pos_y))
 		validate(map, new_pos_x, new_pos_y);
-	}
-	if (keycode == D)
-	{
-		new_pos_x = map->posX - map->dirY * 0.1;
-		new_pos_y = map->posY + map->dirX * 0.1;
+	else if (container_keys_d(keycode, map, &new_pos_x, &new_pos_y))
 		validate(map, new_pos_x, new_pos_y);
-	}
-	if (keycode == ESC)
+	else if (keycode == ESC)
 	{
 		mlx_destroy_image(map->mlx, map->image.image);
 		mlx_destroy_window(map->mlx, map->window);
 		exit (0);
 	}
 	draw_frame(map);
-	return (0);
-}
-
-int		manage_move(int x, int y, void *param)
-{
-	(void)x;
-	(void)y;
-	(void)param;
 	return (0);
 }
