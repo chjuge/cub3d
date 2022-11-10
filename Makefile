@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+         #
+#    By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/09 12:15:42 by ilya             ###   ########.fr        #
+#    Updated: 2022/11/10 12:51:22 by sbrella          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,23 +49,22 @@ all:		libft mlx $(NAME)
 libft:
 			make -C libft/
 
-# mlx:
-# 			make -C mlx/
-
 mlx:
-			make -C mlx_linux/
+			make -C mlx/
+
+# mlx:
+# 			make -C mlx_linux/
 
 # %.o:		%.c	$(HEADER)
 # 			$(CC) $(FLAGS) -Imlx -c $< -o $@
 %.o: %.c
 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx -c $< -o $@
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -I $(LIB_INC) $(LIBFT)
+# $(NAME): $(OBJ)
+# 	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -I $(LIB_INC) $(LIBFT)
 # -Imlx
-# $(NAME):	$(OBJ) $(HEADER)
-# 			$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I $(LIB_INC) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit
-# -Lmlx -lmlx -framework OpenGL -framework AppKit
+$(NAME):	$(OBJ) $(HEADER) $(mlx)
+			$(CC) $(FLAGS) $(OBJ) -o $(NAME) -I $(LIB_INC) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 clean:
 		make -C libft/ clean
