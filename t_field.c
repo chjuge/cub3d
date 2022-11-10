@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:32:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/05 17:34:11 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:14:20 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_field	*init_field(char ch, t_map *map)
 	return (res);
 }
 
-t_field *init_field_2(int n)
+t_field	*init_field_2(int n)
 {
 	t_field	*res;
 

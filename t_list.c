@@ -6,13 +6,13 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:32:37 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/03 19:27:27 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:15:27 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-t_list	*init_list()
+t_list	*init_list(void)
 {
 	t_list	*res;
 

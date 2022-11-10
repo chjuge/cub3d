@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 04:41:50 by ilya              #+#    #+#             */
-/*   Updated: 2022/11/10 12:54:39 by sbrella          ###   ########.fr       */
+/*   Updated: 2022/11/10 13:07:32 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	rotate_vec(double *x, double *y, double angle)
 int	trace(int x, t_fin_map *map, t_texture **texture, double *place)
 {
 	double cameraX = 2*x/(double)WIN_X-1;
-	double rayDirX = map->dirX + map->planeX*cameraX;
+	double rayDirX = map->dirX + map->planeX*0;
 	double rayDirY = map->dirY + map->planeY*cameraX;
 
 	int mapX = (int)map->posX;

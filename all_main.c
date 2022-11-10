@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilya <ilya@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 00:02:59 by ilya             ###   ########.fr       */
+/*   Updated: 2022/11/10 14:06:22 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-
 
 int	check_cub(char *str)
 {
@@ -110,8 +108,8 @@ t_fin_map *prepare_map(int argc, char **argv)
 
 void	configure_map(t_fin_map *map)
 {
-	// map->posX = (double)map->start_x;
-	// map->posY = (double)map->start_y;
+	// map->posX = (double)map->start_x + 0.5; 
+	// map->posY = (double)map->start_y + 0.5;
 	map->posX = 1.5;
 	map->posY = 2.5;
 	map->dirX = 1.0;

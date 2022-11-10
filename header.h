@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 12:49:59 by sbrella          ###   ########.fr       */
+/*   Updated: 2022/11/10 15:01:26 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,4 +194,17 @@ int		manage_mouse(int button, int x, int y, void *param);
 int		red_button(void *param);
 void	draw_frame(t_fin_map *map);
 void	rotate_vec(double *x, double *y, double angle);
+
+void	fill_addr1(t_fin_map *fin);
+void	fill_addr2(t_fin_map *fin);
+void	fill_addr3(t_fin_map *fin);
+void	fill_addr4(t_fin_map *fin);
+
+int	container_cannot_open(int fd, char *param);
+int	container_check_new_line(char *str);
+int	container_check_for_color(t_map *map, int *flag, char *str);
+int	container_check_for_texture(t_map *map, int *flag, char *str);
+int	container_check_for_field(t_map *map, int *flag, char *str, int fd);
+int	got_bad_line(char *str, int fd);
+
 #endif

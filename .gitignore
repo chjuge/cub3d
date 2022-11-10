@@ -3,6 +3,8 @@
 todo.txt
 .vscode
 map_parser
+.DS_Store 
+cub3d
 # Compiled Object files
 *.slo
 *.lo
