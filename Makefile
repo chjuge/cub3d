@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/10 17:17:43 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/10 19:21:33 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,31 +20,31 @@ MLX_INC = ./mlx/
 
 MLXLIB = ./mlx/libmlx.a
 
-SRCS =	parser_color.c\
-		all_main.c \
-		all_readers.c \
-		t_map.c \
-		t_field.c \
-		t_list.c \
-		parser_parser.c \
-		parser_parser2.c \
-		parser_parser3.c \
-		parser_fill_the_field.c\
-		parser_fill_the_field2.c\
-		parser_check_for_full_map.c\
-		parser_fields_to_array.c \
-		parser_parse_textures.c \
-		parser_parse_textures2.c \
-		executer_mlx_hookers.c \
-		executer_mlx_hookers2.c \
-		executer_mlx_hookers_containers.c \
-		executer_draw.c \
-		parser_free_int_arr.c \
-		parser_parser_containers.c \
-		parser_copy_to_final.c \
-		all_main_utils.c \
-		executer_trace.c \
-		executer_real_draw.c
+SRCS =	src/parser_color.c\
+		src/all_main.c \
+		src/all_readers.c \
+		src/t_map.c \
+		src/t_field.c \
+		src/t_list.c \
+		src/parser_parser.c \
+		src/parser_parser2.c \
+		src/parser_parser3.c \
+		src/parser_fill_the_field.c\
+		src/parser_fill_the_field2.c\
+		src/parser_check_for_full_map.c\
+		src/parser_fields_to_array.c \
+		src/parser_parse_textures.c \
+		src/parser_parse_textures2.c \
+		src/executer_mlx_hookers.c \
+		src/executer_mlx_hookers2.c \
+		src/executer_mlx_hookers_containers.c \
+		src/executer_draw.c \
+		src/parser_free_int_arr.c \
+		src/parser_parser_containers.c \
+		src/parser_copy_to_final.c \
+		src/all_main_utils.c \
+		src/executer_trace.c \
+		src/executer_real_draw.c
 
 
 OBJ	= 	$(SRCS:.c=.o)
@@ -66,7 +66,7 @@ mlx:
 # mlx:
 # 			make -C mlx_linux/
 
-%.o:		%.c	$(HEADER)
+%.o:		%.c	 $(HEADER)
 			$(CC) $(FLAGS) -Imlx -c $< -o $@
 # %.o: %.c
 # 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx -c $< -o $@

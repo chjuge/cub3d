@@ -6,11 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 04:41:50 by ilya              #+#    #+#             */
-/*   Updated: 2022/11/10 18:44:41 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:21:57 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 void	rotate_vec(double *x, double *y, double angle)
 {

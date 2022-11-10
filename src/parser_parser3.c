@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_for_full_map.c                               :+:      :+:    :+:   */
+/*   parser_parser3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:26:12 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/06 11:36:01 by mproveme         ###   ########.fr       */
+/*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
+/*   Updated: 2022/11/10 19:22:45 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	check_for_full_map(t_map *map)
+int	check_for_field(char *str)
 {
-	if (!map->map || !map->path_to_txt_ea || !map->path_to_txt_no
-		|| !map->path_to_txt_so || !map->path_to_txt_we)
+	int	i;
+
+	i = 0;
+	if (!str || str[0] == '\n')
 		return (ERR);
-	if (map->color_c == -1 || map->color_f == -1)
-		return (ERR);
-	if (map->start_x == -1 || map->start_y == -1 || map->start_dir == -1)
-		return (ERR);
+	while (str[i] && str[i] != '\n')
+	{
+		if (cmp_with_admissible(str[i]) == ERR)
+		{
+			return (ERR);
+		}
+		i++;
+	}
 	return (OK);
 }

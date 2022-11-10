@@ -1,46 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_fill_the_field2.c                           :+:      :+:    :+:   */
+/*   parser_check_for_full_map.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 15:09:19 by mproveme         ###   ########.fr       */
+/*   Created: 2022/11/04 16:26:12 by mproveme          #+#    #+#             */
+/*   Updated: 2022/11/10 19:22:10 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	check_first_last_walls(t_field *lst)
+int	check_for_full_map(t_map *map)
 {
-	t_field	*last;
-
-	if (lst->val == 0)
+	if (!map->map || !map->path_to_txt_ea || !map->path_to_txt_no
+		|| !map->path_to_txt_so || !map->path_to_txt_we)
 		return (ERR);
-	last = field_last(lst);
-	if (last->val == 0)
+	if (map->color_c == -1 || map->color_f == -1)
 		return (ERR);
-	return (OK);
-}
-
-int	check_line_for_zeros(t_field *lst)
-{
-	while (lst)
-	{
-		if (lst->val == 0)
-			return (ERR);
-		lst = lst->next;
-	}
-	return (OK);
-}
-
-int	check_first_last_lines(t_list *lst)
-{
-	if (check_line_for_zeros(lst->val))
-		return (ERR);
-	lst = list_last(lst);
-	if (check_line_for_zeros(lst->val))
+	if (map->start_x == -1 || map->start_y == -1 || map->start_dir == -1)
 		return (ERR);
 	return (OK);
 }

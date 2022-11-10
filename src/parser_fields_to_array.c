@@ -6,11 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:12:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 15:16:11 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:22:24 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 int	find_max_len_line(t_list *lst)
 {

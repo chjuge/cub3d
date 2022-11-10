@@ -6,11 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:16:43 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 18:43:57 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:22:05 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 void	image_pixel(t_image *image, int color, int x, int y)
 {

@@ -6,11 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 04:11:34 by ilya              #+#    #+#             */
-/*   Updated: 2022/11/10 16:35:18 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:22:03 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 int	manage_mouse(int button, int x, int y, void *param)
 {

@@ -6,11 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:30:01 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 15:27:12 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:21:55 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 void	read_t_map(t_map *map)
 {

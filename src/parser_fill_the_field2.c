@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_parser3.c                                   :+:      :+:    :+:   */
+/*   parser_fill_the_field2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 14:26:36 by mproveme         ###   ########.fr       */
+/*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
+/*   Updated: 2022/11/10 19:22:28 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
-int	check_for_field(char *str)
+int	check_first_last_walls(t_field *lst)
 {
-	int	i;
+	t_field	*last;
 
-	i = 0;
-	if (!str || str[0] == '\n')
+	if (lst->val == 0)
 		return (ERR);
-	while (str[i] && str[i] != '\n')
+	last = field_last(lst);
+	if (last->val == 0)
+		return (ERR);
+	return (OK);
+}
+
+int	check_line_for_zeros(t_field *lst)
+{
+	while (lst)
 	{
-		if (cmp_with_admissible(str[i]) == ERR)
-		{
+		if (lst->val == 0)
 			return (ERR);
-		}
-		i++;
+		lst = lst->next;
 	}
+	return (OK);
+}
+
+int	check_first_last_lines(t_list *lst)
+{
+	if (check_line_for_zeros(lst->val))
+		return (ERR);
+	lst = list_last(lst);
+	if (check_line_for_zeros(lst->val))
+		return (ERR);
 	return (OK);
 }
