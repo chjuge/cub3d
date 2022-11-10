@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/10 16:35:40 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/10 17:17:43 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,9 @@ SRCS =	parser_color.c\
 		parser_free_int_arr.c \
 		parser_parser_containers.c \
 		parser_copy_to_final.c \
-		all_main_utils.c 
+		all_main_utils.c \
+		executer_trace.c \
+		executer_real_draw.c
 
 
 OBJ	= 	$(SRCS:.c=.o)
