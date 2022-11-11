@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 12:15:13 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:30:45 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ t_fin_map	*prepare_map(int argc, char **argv)
 
 void	configure_map(t_fin_map *map)
 {
-	// map->pos_x = (double)map->start_x + 0.5; 
-	// map->pos_y = (double)map->start_y + 0.5;
-	map->pos_x = 1.5;
-	map->pos_y = 2.5;
+	map->pos_x = (double)map->start_y + 0.5; 
+	map->pos_y = (double)map->start_x + 0.5;
+	// map->pos_x = 2.5;
+	// map->pos_y = 21.5;
 	map->dir_x = 1.0;
 	map->dir_y = 0.0; //initial direction vector
 	map->planeX = 0.0;
