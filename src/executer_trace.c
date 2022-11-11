@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_trace.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:11:06 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:07 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:52:34 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	trace_step1(t_trace *t, int x, t_fin_map *map)
 {
 	t->camera_x = 2 * x / (double)WIN_X - 1;
-	t->ray_dir_x = map->dir_x + map->planeX * 0;
+	t->ray_dir_x = map->dir_x + map->planeX * t->camera_x;
 	t->ray_dir_y = map->dir_y + map->planeY * t->camera_x;
 	t->map_x = (int)map->pos_x;
 	t->map_y = (int)map->pos_y;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_real_draw.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:16:43 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:05 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:18:26 by sbrella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	image_pixel(t_image *image, int color, int x, int y)
 	dst = image->addr + (y * image->line_length + x
 			* (image->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	ft_clamp(int ret, int fringe)
+{
+	if (ret >= fringe)
+		ret = fringe - 1;
+	return (ret);
 }
 
 void	real_draw(t_fin_map *map, int column,
@@ -41,8 +48,8 @@ void	real_draw(t_fin_map *map, int column,
 		else
 		{
 			tex_color = get_image_pixel(&texture->image, (int)i.place,
-					((count - upper_fr) * texture->t_h)
-					/ (2 * (int)i.intersec));
+					ft_clamp(((count - upper_fr) * texture->t_h)
+						/ (2 * (int)i.intersec), texture->t_h));
 			image_pixel(&map->image, tex_color, column, count);
 		}
 		count++;
