@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:55:53 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:41:57 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include <math.h>
 # include <string.h>
 # include <stdlib.h>
-# include <mlx.h>
+// # include <mlx.h>
+# include "mlx/mlx.h"
 # define ERR 1
 # define OK 0
 # define FLOOR 5
@@ -72,7 +73,7 @@
 typedef struct s_field
 {
 	struct s_field	*next;
-	int				val;
+	char			val;
 }		t_field;
 
 typedef struct	s_list
@@ -186,11 +187,11 @@ int		cmp_with_admissible(char c);
 void	add_color_to_map(t_map *map, int flag, char *str);
 void	add_texture_to_map(t_map *map, int flag, char *str);
 
-t_field	*fill_list(char *str, t_map *map);
+t_field	*fill_list(char *str);
 int		fill_the_field(t_map *map, char *str, int fd);
 
-t_field	*init_field(char ch, t_map *map);
-t_field *init_field_2(int n);
+t_field	*init_field(char ch);
+t_field *init_field_2(char n);
 t_field	*field_last(t_field *lst);
 void	add_back_field(t_field **lst, t_field *new);
 void	free_fields_all(t_field *t);
@@ -203,10 +204,11 @@ void	free_lists_all(t_list *t);
 int	parse_map(char *param, t_map *map);
 
 
-void	fields_to_array(t_map *map);
+int	fields_to_array(t_map *map);
 
 
-int	check_for_full_map(t_map *map);
+int	check_for_full_map_full(t_map *map);
+int	check_for_full_map_part(t_map *map);
 
 void	read_int_map(int **map, int max_x, int max_y);
 void	read_t_map(t_map *map);
@@ -265,5 +267,12 @@ int	container_keys_s(int keycode, t_fin_map *map,
 int	container_keys_d(int keycode, t_fin_map *map,
 		double *new_pos_x, double *new_pos_y);
 
+int	fill_direct_and_start(t_map *map);
+int	check_for_dir(char ch, t_map *map, int y, int x);
+int	**convert_lst_to_array(t_list *lst, int x, int y);
+int	f_convert(char ch);
+void	adjust_length(t_map *map, int *x, int *y);
+void	line_to_length(t_list *lst, int i);
+int	find_max_len_line(t_list *lst);
 
 #endif

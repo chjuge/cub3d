@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:40 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:39:18 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ int	got_bad_line(char *str, int fd)
 	printf("got bad line:\n%s\n", str);
 	printf("map error\n");
 	close(fd);
+	printf("out of got_bad_line\n");
+	return (1);
+}
+
+int	container_free_str(char *str)
+{
 	free(str);
 	return (1);
 }
@@ -43,8 +49,9 @@ int	parse_map(char *param, t_map *map)
 			continue ;
 		if (container_check_for_field(map, &flag, str, fd) != ERR)
 			return (OK);
-		else if (got_bad_line(str, fd))
-			return (ERR);
+		else if (container_free_str(str))
+			break ;
 	}
+	got_bad_line(str, fd);
 	return (ERR);
 }

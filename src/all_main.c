@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:21:54 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:15:13 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ t_fin_map	*prepare_map(int argc, char **argv)
 	if (check_argc(argc) || check_cub_container(argv[1]))
 		exit (1);
 	map = init_map();
-	if (parse_map(argv[1], map) != ERR)
-	{
-		if (check_for_full_map(map) == ERR && container_error(map))
-			exit (1);
-	}
+	if (parse_map(argv[1], map))
+		exit (1);
+	if (check_for_full_map_full(map) == ERR && container_error(map))
+		exit (1);
 	read_t_map(map);
 	res = copy_to_final(map);
 	if (parse_textures(res, map) && container_error2(map, res))
@@ -35,8 +34,8 @@ t_fin_map	*prepare_map(int argc, char **argv)
 
 void	configure_map(t_fin_map *map)
 {
-	// map->posX = (double)map->start_x + 0.5; 
-	// map->posY = (double)map->start_y + 0.5;
+	// map->pos_x = (double)map->start_x + 0.5; 
+	// map->pos_y = (double)map->start_y + 0.5;
 	map->pos_x = 1.5;
 	map->pos_y = 2.5;
 	map->dir_x = 1.0;

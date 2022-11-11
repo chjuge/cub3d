@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/10 19:34:44 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/11 13:42:55 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS =	src/parser_color.c\
 		src/parser_fill_the_field2.c\
 		src/parser_check_for_full_map.c\
 		src/parser_fields_to_array.c \
+		src/parser_fields_to_array2.c \
 		src/parser_parse_textures.c \
 		src/parser_parse_textures2.c \
 		src/executer_mlx_hookers.c \

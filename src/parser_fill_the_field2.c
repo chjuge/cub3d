@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:05:36 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:28 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:44:48 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	check_first_last_walls(t_field *lst)
 {
-	t_field	*last;
-
-	if (lst->val == 0)
+	if (lst->val == '0' || lst->val == 'N' || lst->val == 'S'
+		|| lst->val == 'W' || lst->val == 'E')
 		return (ERR);
-	last = field_last(lst);
-	if (last->val == 0)
+	lst = field_last(lst);
+	if (lst->val == '0' || lst->val == 'N' || lst->val == 'S'
+		|| lst->val == 'W' || lst->val == 'E')
 		return (ERR);
 	return (OK);
 }
@@ -28,7 +28,8 @@ int	check_line_for_zeros(t_field *lst)
 {
 	while (lst)
 	{
-		if (lst->val == 0)
+		if (lst->val == '0' || lst->val == 'N' || lst->val == 'S'
+			|| lst->val == 'W' || lst->val == 'E')
 			return (ERR);
 		lst = lst->next;
 	}

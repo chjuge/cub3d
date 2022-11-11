@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:38 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:13:11 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,15 @@ int	container_check_for_texture(t_map *map, int *flag, char *str)
 
 int	container_check_for_field(t_map *map, int *flag, char *str, int fd)
 {
+	if (check_for_full_map_part(map))
+		return (ERR);
 	*flag = check_for_field(str);
 	if (*flag != ERR)
 	{
 		printf ("got field\n");
 		if (fill_the_field(map, str, fd) == ERR)
 		{
-			printf("map error\n");
-			close(fd);
+			printf("map error  ---> fill_the_field\n");
 			return (ERR);
 		}
 		else
