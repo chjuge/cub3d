@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:11:06 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 15:23:47 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:42:01 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,16 @@ void	trace_step4(t_trace *t, t_fin_map *map, t_texture **texture)
 	if (t->side == 1)
 	{
 		if (t->ray_dir_y > 0.0)
-			*texture = map->texture_so;
+			*texture = map->texture_we;
 		else
-			*texture = map->texture_no;
+			*texture = map->texture_ea;
 	}
 	else
 	{
 		if (t->ray_dir_x > 0.0)
-			*texture = map->texture_we;
+			*texture = map->texture_no;
 		else
-			*texture = map->texture_ea;
+			*texture = map->texture_so;
 	}
 }
 
