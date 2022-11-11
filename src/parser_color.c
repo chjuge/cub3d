@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 13:53:26 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:12 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:37:17 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	get_color(char *str)
 	if (color_syntax(str) == ERR)
 		return (-ERR);
 	res = ft_atoi(str);
-	printf("my int: %d\n", res);
 	if (res > 255 || res < 0)
 		return (-ERR);
 	return (res);
@@ -62,7 +61,6 @@ int	color_syntax(char *str)
 
 	if (!str || str[0] == '\n' || str[0] == '\0')
 		return (ERR);
-	printf("%s\n", str);
 	i = 0;
 	if (ft_strlen_n(str) > 3)
 		return (ERR);

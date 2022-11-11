@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:12:46 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 13:43:48 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:42:07 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	fields_to_array(t_map *map)
 	adjust_length(map, &(map->max_x), &(map->max_y));
 	if (fill_direct_and_start(map))
 		return (ERR);
-	read_t_map(map);
 	map->map = convert_lst_to_array(map->lst, map->max_x, map->max_y);
 	return (OK);
 }

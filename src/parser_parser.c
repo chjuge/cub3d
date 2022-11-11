@@ -6,20 +6,11 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 17:19:32 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:40:03 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
-
-int	got_bad_line(char *str, int fd)
-{
-	printf("got bad line:\n%s\n", str);
-	printf("map error\n");
-	close(fd);
-	printf("out of got_bad_line\n");
-	return (1);
-}
 
 int	check_free(t_map *map, char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 13:13:11 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:32:06 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	container_check_new_line(char *str)
 	if (ft_strncmp("\n", str, 2) == 0)
 	{
 		free(str);
+		str = NULL;
 		return (1);
 	}
 	return (0);
@@ -36,6 +37,7 @@ int	container_check_for_color(t_map *map, int *flag, char *str)
 	{
 		add_color_to_map(map, *flag, str);
 		free(str);
+		str = NULL;
 		return (1);
 	}
 	return (0);
@@ -48,6 +50,7 @@ int	container_check_for_texture(t_map *map, int *flag, char *str)
 	{
 		add_texture_to_map(map, *flag, str);
 		free(str);
+		str = NULL;
 		return (1);
 	}
 	return (0);
@@ -60,10 +63,8 @@ int	container_check_for_field(t_map *map, int *flag, char *str, int fd)
 	*flag = check_for_field(str);
 	if (*flag != ERR)
 	{
-		printf ("got field\n");
 		if (fill_the_field(map, str, fd) == ERR)
 		{
-			printf("map error  ---> fill_the_field\n");
 			return (ERR);
 		}
 		else

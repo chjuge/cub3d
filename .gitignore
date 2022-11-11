@@ -5,6 +5,7 @@ todo.txt
 map_parser
 .DS_Store 
 cub3d
+cub3d.dSYM
 # Compiled Object files
 *.slo
 *.lo

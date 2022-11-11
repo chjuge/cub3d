@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 15:20:38 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:42:02 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ t_fin_map	*prepare_map(int argc, char **argv)
 		exit (1);
 	map = init_map();
 	if (parse_map(argv[1], map))
+	{
+		printf("Wrong map!\n");
 		exit (1);
+	}
 	if (check_for_full_map_full(map) == ERR && container_error(map))
 		exit (1);
-	read_t_map(map);
 	res = copy_to_final(map);
 	if (parse_textures(res, map) && container_error2(map, res))
 		exit (1);
@@ -64,7 +66,6 @@ int	main(int argc, char **argv)
 
 	map = prepare_map(argc, argv);
 	configure_map(map);
-	printf("hi:%d %d\n", map->start_x, map->start_y);
 	map->window = mlx_new_window(map->mlx, WIN_X, WIN_Y, "HELLO");
 	draw_frame(map);
 	mlx_hook(map->window, 17, 1L << 17, red_button, map);
