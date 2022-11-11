@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:52:20 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 15:29:15 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:16:13 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_map
 	int		start_dir;
 	int		max_x;
 	int		max_y;
+	int		end_flag;
 }			t_map;
 
 typedef struct s_image

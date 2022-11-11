@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:50:13 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:49 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:17:51 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_map	*init_map(void)
 	map->lst = NULL;
 	map->max_x = 0;
 	map->max_y = 0;
+	map->end_flag = 0;
 	return (map);
 }
 

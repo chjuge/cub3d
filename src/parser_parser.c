@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:43:57 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 13:39:18 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 17:19:32 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	got_bad_line(char *str, int fd)
 	return (1);
 }
 
-int	container_free_str(char *str)
+int	check_free(t_map *map, char *str)
 {
-	free(str);
+	if (map->end_flag == 0)
+		free(str);
 	return (1);
 }
 
@@ -49,9 +50,8 @@ int	parse_map(char *param, t_map *map)
 			continue ;
 		if (container_check_for_field(map, &flag, str, fd) != ERR)
 			return (OK);
-		else if (container_free_str(str))
-			break ;
+		else if (check_free(map, str))
+			return (ERR);
 	}
-	got_bad_line(str, fd);
-	return (ERR);
+	return (OK);
 }
