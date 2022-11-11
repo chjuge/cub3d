@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:18:45 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 15:18:47 by sbrella          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:20:38 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,22 @@ void	configure_map(t_fin_map *map)
 	map->pos_y = (double)map->start_x + 0.5;
 	map->dir_x = 1.0;
 	map->dir_y = 0.0;
-	map->planeX = 0.0;
-	map->planeY = 0.66;
+	map->plane_x = 0.0;
+	map->plane_y = 0.66;
 	if (map->start_dir == NO)
 	{
 		rotate_vec(&map->dir_x, &map->dir_y, 1.57079632679 * 2.0);
-		rotate_vec(&map->planeX, &map->planeY, 1.57079632679 * 2.0);
+		rotate_vec(&map->plane_x, &map->plane_y, 1.57079632679 * 2.0);
 	}
 	else if (map->start_dir == WE)
 	{
 		rotate_vec(&map->dir_x, &map->dir_y, 1.57079632679);
-		rotate_vec(&map->planeX, &map->planeY, 1.57079632679);
+		rotate_vec(&map->plane_x, &map->plane_y, 1.57079632679);
 	}
 	else if (map->start_dir == EA)
 	{
 		rotate_vec(&map->dir_x, &map->dir_y, -1.57079632679);
-		rotate_vec(&map->planeX, &map->planeY, -1.57079632679);
+		rotate_vec(&map->plane_x, &map->plane_y, -1.57079632679);
 	}
 	map->image.image = NULL;
 }

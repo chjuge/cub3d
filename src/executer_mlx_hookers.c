@@ -6,7 +6,7 @@
 /*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 04:11:34 by ilya              #+#    #+#             */
-/*   Updated: 2022/11/10 19:22:01 by mproveme         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:20:38 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	validate(t_fin_map *map, double new_pos_x, double new_pos_y)
 void	rotate_plus(double angle, t_fin_map *map)
 {
 	rotate_vec(&map->dir_x, &map->dir_y, angle);
-	rotate_vec(&map->planeX, &map->planeY, angle);
+	rotate_vec(&map->plane_x, &map->plane_y, angle);
 }
 
 int	manage_key(int keycode, void *param)

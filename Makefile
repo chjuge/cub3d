@@ -6,7 +6,7 @@
 #    By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/20 18:42:35 by mproveme          #+#    #+#              #
-#    Updated: 2022/11/11 13:42:55 by mproveme         ###   ########.fr        #
+#    Updated: 2022/11/11 14:40:41 by mproveme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,10 +68,10 @@ mlx:
 # mlx:
 # 			make -C mlx_linux/
 
-%.o:		%.c	 $(HEADER)
-			$(CC) $(FLAGS) -Imlx -c $< -o $@
-# %.o: %.c
-# 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx -c $< -o $@
+# %.o:		%.c	 $(HEADER)
+# 			$(CC) $(FLAGS) -Imlx -c $< -o $@
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx -c $< -o $@
 
 # $(NAME): $(OBJ)
 # 	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -I $(LIB_INC) $(LIBFT)

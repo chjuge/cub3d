@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer_trace.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbrella <sbrella@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mproveme <mproveme@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:11:06 by mproveme          #+#    #+#             */
-/*   Updated: 2022/11/11 14:52:34 by sbrella          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:23:47 by mproveme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	trace_step1(t_trace *t, int x, t_fin_map *map)
 {
 	t->camera_x = 2 * x / (double)WIN_X - 1;
-	t->ray_dir_x = map->dir_x + map->planeX * t->camera_x;
-	t->ray_dir_y = map->dir_y + map->planeY * t->camera_x;
+	t->ray_dir_x = map->dir_x + map->plane_x * t->camera_x;
+	t->ray_dir_y = map->dir_y + map->plane_y * t->camera_x;
 	t->map_x = (int)map->pos_x;
 	t->map_y = (int)map->pos_y;
 	t->del_dist_x = sqrt(1 + (t->ray_dir_y * t->ray_dir_y)
@@ -28,7 +28,6 @@ void	trace_step1(t_trace *t, int x, t_fin_map *map)
 
 void	trace_step2(t_trace *t, t_fin_map *map)
 {
-	//calculate step and initial sideDist
 	if (t->ray_dir_x < 0)
 	{
 		t->step_x = -1;
@@ -53,10 +52,8 @@ void	trace_step2(t_trace *t, t_fin_map *map)
 
 void	trace_step3(t_trace *t, t_fin_map *map)
 {
-	//perform DDA
 	while (t->hit == 0)
 	{
-		//jump to next map square, either in x-direction, or in y-direction
 		if (t->side_dist_x < t->side_dist_y)
 		{
 			t->side_dist_x += t->del_dist_x;
@@ -69,7 +66,6 @@ void	trace_step3(t_trace *t, t_fin_map *map)
 			t->map_y += t->step_y;
 			t->side = 1;
 		}
-		//Check if ray has hit a wall
 		if (map->map[t->map_x][t->map_y] > 0)
 			t->hit = 1;
 	}
@@ -111,7 +107,6 @@ int	trace(int x, t_fin_map *map, t_texture **texture, double *place)
 	else
 		t.wall_x = map->pos_x + t.perp_wall_dist * t.ray_dir_x;
 	t.wall_x -= floor((t.wall_x));
-	//x coordinate on the texture
 	t.tex_x = (int)(t.wall_x * (double)((*texture)->t_w));
 	if (t.side == 0 && t.ray_dir_x > 0)
 		t.tex_x = (*texture)->t_w - t.tex_x - 1;
